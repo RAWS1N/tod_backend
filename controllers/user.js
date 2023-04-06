@@ -5,7 +5,7 @@ import ErrorHandler from "../middlewares/error.js";
 
 export const getAllUser = async (req, res, next) => {
   try {
-    const users = await User.find({});
+    const users = await User.find().estimatedDocumentCount().exec();
     res.json({
       success: true,
       data: users,
