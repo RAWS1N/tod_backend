@@ -14,16 +14,14 @@ config({
 const app = express()
 app.use(express.json())
 app.use(cookieParser())
+app.get("/",(req,res) => {
+    res.send("Welcome to todo_backend")
+})
 app.use("/api/v1/user",userRouter)
 app.use('/api/v1/task',taskRouter)
 app.use(urlencoded({extended:true}))
 app.use(errorMiddleware)
-app.use(cors({
-    origin : [process.env.FROTEND_URL],
-    methods : ["GET","PUT","POST","DELETE"],
-    credentials : true,
-    
-}))
+app.use(cors())
 
 
 
