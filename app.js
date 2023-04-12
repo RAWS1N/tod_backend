@@ -12,6 +12,7 @@ config({
 
 
 const app = express()
+app.use(cors())
 app.use(express.json())
 app.use(cookieParser())
 app.get("/",(req,res) => {
@@ -21,9 +22,7 @@ app.use("/api/v1/user",userRouter)
 app.use('/api/v1/task',taskRouter)
 app.use(urlencoded({extended:true}))
 app.use(errorMiddleware)
-// app.use(cors())
 
-cors()
 
 
 
