@@ -23,11 +23,7 @@ app.use(urlencoded({extended:true}))
 app.use(errorMiddleware)
 // app.use(cors())
 
-cors({
-    origin: [process.env.FRONTEND_URL],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
+cors()
 
 
 
