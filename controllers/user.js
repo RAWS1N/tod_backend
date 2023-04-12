@@ -5,7 +5,7 @@ import ErrorHandler from "../middlewares/error.js";
 
 export const getAllUser = async (req, res, next) => {
   try {
-    const users = await User.find().estimatedDocumentCount().exec();
+    const users = await User.find({});
     res.json({
       success: true,
       data: users,
@@ -20,7 +20,7 @@ export const CreateUser = async (req, res, next) => {
     const { name, email, password } = req.body;
     const user = await User.findOne({ email });
     if (user) {
-      return res.status(404).json({
+      return res.status(203).json({
         success: false,
         message: "user already exist",
       });
