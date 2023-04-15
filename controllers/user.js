@@ -16,9 +16,9 @@ export const getAllUser = async (req, res, next) => {
 };
 
 export const CreateUser = async (req, res, next) => {
-  try {
     const { name, email, password } = req.body;
     const user = await User.findOne({ email });
+  try {
     if (user) {
       return res.status(203).json({
         success: false,
