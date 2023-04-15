@@ -24,15 +24,16 @@ export const CreateUser = async (req, res, next) => {
         success: false,
         message: "user already exist",
       });
+    } else {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const newUser = await User.create({
+        name,
+        email,
+        password: hashedPassword,
+      });
+      const message = "User Registered Successfully";
+      sendCookie(res, newUser, message, 201);
     }
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await User.create({
-      name,
-      email,
-      password: hashedPassword,
-    });
-    const message = "User Registered Successfully";
-    sendCookie(res, newUser, message, 201);
   } catch (error) {
     next(error);
   }
